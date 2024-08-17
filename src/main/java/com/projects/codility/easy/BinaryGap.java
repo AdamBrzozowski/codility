@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class BinaryGap {
     public int solution(int N) {
-        // Implement your solution here
         String binaryRepresentation = Integer.toBinaryString(N);
         int result = 0;
         int count = 0;

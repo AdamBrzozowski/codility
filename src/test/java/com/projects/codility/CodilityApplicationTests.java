@@ -1,20 +1,15 @@
 package com.projects.codility;
 
-import ch.qos.logback.core.joran.sanity.Pair;
 import com.projects.codility.easy.BinaryGap;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import static org.junit.Assert.assertEquals;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 @SpringBootTest
 class CodilityApplicationTests {
@@ -75,10 +70,7 @@ class CodilityApplicationTests {
 		control.add(Control.builder().expected(3).result(solution).build());
 
 		control.forEach(
-				entry -> {
-
-					assertEquals(entry.getExpected(),entry.getResult());
-				}
+				entry -> Assertions.assertEquals(entry.getExpected(), entry.getResult())
 		);
 
 	}
