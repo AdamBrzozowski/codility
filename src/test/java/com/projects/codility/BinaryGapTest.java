@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 
 @SpringBootTest
-class CodilityApplicationTests {
+class BinaryGapTest {
 
 	@Autowired
 	private BinaryGap binaryGap;
