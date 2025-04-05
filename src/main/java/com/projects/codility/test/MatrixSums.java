@@ -1,13 +1,18 @@
 package com.projects.codility.test;
 
+import org.springframework.stereotype.Service;
+
 import java.util.Arrays;
 
 /*
-Return Matrix of 2 rows and N columns of 1s and 0s given:
-    - U: sum of all 1s of first row
-    - L: sum of all 1s of second row
-    - C: array N of sums of 1s for each column
+ * Return a matrix with 2 rows and N columns filled with 1s and 0s, based on the following parameters:
+ *
+ * Parameters:
+ *   - U: The total sum of 1s in the first row.
+ *   - L: The total sum of 1s in the second row.
+ *   - C: An array of length N representing the sum of 1s in each column.
  */
+@Service
 public class MatrixSums {
         public String solution(int U, int L, int[] C) {
             // Implement your solution here
@@ -25,28 +30,38 @@ public class MatrixSums {
             String M1="";
             String M2="";
             for(int colSum : C) {
-                if(colSum==2) {
+                if (colSum == 2) {
                     minUL++;
                     sumFirst++;
                     sumSecond++;
                     M1 = M1 + "1";
                     M2 = M2 + "1";
-                } else if(colSum==0) {
+                } else {
                     M1 = M1 + "0";
                     M2 = M2 + "0";
+                }
+            }
+
+            if(U<minUL || L<minUL) {
+                return "IMPOSSIBLE";
+            }
+
+            for(int i=0; i<C.length; i++) {
+                if(C[i]==2) {
+                    continue;
+                }
+                if(C[i]==0) {
+                    M1 = M1.substring(0, i) + "0" + M1.substring(i + 1);
+                    M2 = M2.substring(0, i) + "0" + M2.substring(i + 1);
                 } else if(sumFirst<U) {
                     sumFirst++;
-                    M1 = M1 + "1";
-                    M2 = M2 + "0";
+                    M1 = M1.substring(0, i) + "1" + M1.substring(i + 1);;
+                    M2 = M2.substring(0, i) + "0" + M2.substring(i + 1);
                 } else if(sumSecond<L) {
                     sumSecond++;
-                    M1 = M1 + "0";
-                    M2 = M2 + "1";
+                    M1 = M1.substring(0, i) + "0" + M1.substring(i + 1);
+                    M2 = M2.substring(0, i) + "1" + M2.substring(i + 1);
                 } else {
-                    return "IMPOSSIBLE";
-                }
-
-                if(U<minUL || L<minUL) {
                     return "IMPOSSIBLE";
                 }
             }
